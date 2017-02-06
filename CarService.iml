@@ -14,5 +14,8 @@
     <orderEntry type="library" name="org.eclipse.jetty.aggregate:jetty-all:9.4.0.M1" level="project" />
     <orderEntry type="library" name="Simple Logging Facade for Java:1.7.22" level="project" />
     <orderEntry type="library" name="com.googlecode.flyway:flyway-core:2.1.1" level="project" />
+    <orderEntry type="library" name="org.postgresql:postgresql:9.4.1212.jre7" level="project" />
+    <orderEntry type="library" name="com.zaxxer:HikariCP:2.4.3" level="project" />
+    <orderEntry type="library" name="com.owlike:genson:1.4" level="project" />
   </component>
 </module>
