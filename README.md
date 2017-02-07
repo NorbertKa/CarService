@@ -10,8 +10,12 @@ Ka arī esmu izveidojis jaru iekšā out/artifacts/CarService_jar, kuru var pala
 ## Kā palaist *frontend*
 
 frontend kods atrodas *frontend* mapītē, to palaist var ar komandām (secīgi)
+
 `npm install`
+
 `npm run dev`
+
+Vienīgā problēma ir tādā ka man nesanācā salabot CORS uz servera, tādēļ browseri kuru izmantojat vajag palaist unsecure mode (piemēram chrome: `--disable-web-security`)
 
 
 Routes:
