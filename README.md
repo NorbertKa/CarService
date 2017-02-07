@@ -36,3 +36,5 @@ Routes:
 | /timeframes/{id}      | GET      |    | Atgriež specifisku mašīnas izmantošanas laiku
 | /timeframes | POST      |    day, timeFrom, timeTo, employeeCarId | Izveido jaunu mašīnas izmantošanas laiku
 
+Visi route, atgriež atpakaļ datus JSON formātā, izņemot ja pats jetty serveris izmet ārā koutkādu exception, tad tas ir vienkārši HTML.
+
