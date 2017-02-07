@@ -7,6 +7,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import models.CarModel;
 import models.EmployeeCarModel;
 import models.EmployeeModel;
+import models.TimeframeModel;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -50,6 +51,7 @@ public class RestServer {
         EmployeeModel.setDataSource(dataSource);
         CarModel.setDataSource(dataSource);
         EmployeeCarModel.setDataSource(dataSource);
+        TimeframeModel.setDataSource(dataSource);
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.setContextPath("/");
@@ -64,7 +66,8 @@ public class RestServer {
         jerseyServlet.setInitParameter(
                 "jersey.config.server.provider.classnames", CarController.class.getCanonicalName()+
                         "," + EmployeeController.class.getCanonicalName()+
-                        "," + EmployeeCarController.class.getCanonicalName());
+                        "," + EmployeeCarController.class.getCanonicalName()+
+                        "," + TimeframeController.class.getCanonicalName());
 
 
         /*

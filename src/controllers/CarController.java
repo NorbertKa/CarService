@@ -5,7 +5,6 @@ import bean.ErrorResponse;
 import models.CarModel;
 import org.postgresql.util.PSQLException;
 
-import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;

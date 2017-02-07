@@ -1,7 +1,9 @@
 package controllers;
 
 import bean.Employee;
+import bean.EmployeeCar;
 import bean.ErrorResponse;
+import models.EmployeeCarModel;
 import models.EmployeeModel;
 import org.postgresql.util.PSQLException;
 
@@ -16,6 +18,7 @@ import java.util.List;
 @Path("/employees")
 public class EmployeeController {
     EmployeeModel employeeModel = new EmployeeModel();
+    EmployeeCarModel employeeCarModel = new EmployeeCarModel();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -101,5 +104,31 @@ public class EmployeeController {
             return Response.status(505).entity(errorResponse).build();
         }
         return Response.status(200).entity(employee).build();
+    }
+
+    @GET
+    @Path("{id}/cars")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getEmployees(@PathParam("id") Integer id, @QueryParam("startingFrom") Integer startingFrom) throws Exception {
+        List<EmployeeCar> employeeCarList = new ArrayList<EmployeeCar>();
+
+        if (startingFrom != null &&startingFrom == 0) {
+            ErrorResponse errorResponse = new ErrorResponse("Pagination starts with 1", 2);
+            return Response.status(404).entity(errorResponse).build();
+        }
+
+        try {
+            employeeCarList = employeeCarModel.getEmployeeCars(startingFrom, id, null);
+        } catch (Exception e) {
+            ErrorResponse errorResponse = new ErrorResponse("Internal server error", 0);
+            return Response.status(505).entity(errorResponse).build();
+        }
+
+        if(employeeCarList.size() == 0) {
+            ErrorResponse errorResponse = new ErrorResponse("No employee cars found", 1);
+            return Response.status(404).entity(errorResponse).build();
+        }
+
+        return Response.status(200).entity(employeeCarList).build();
     }
 }
