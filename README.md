@@ -2,7 +2,8 @@
 
 ## Kā palaist servisu:
 *main funkcija atrodas src/controllers/RestServer*
-esmu izveidojis jaru iekšā out/artifacts/CarService_jar, kuru var palaist šādi:
+
+Ka arī esmu izveidojis jaru iekšā out/artifacts/CarService_jar, kuru var palaist šādi:
 
 `java -jar CarService.jar <POSTGRESQL_HOST> <POSTGRESQL_PORT> <POSTGRESQL_USERNAME> <POSTGRESQL_DB> <POSTGRESQL_PASSWORD>`
 
@@ -23,3 +24,4 @@ Routes:
 | /timeframes      | GET |  startingFrom, employeeCarId| Atgirēz visus mašīnas izmantošanas laikus
 | /timeframes/{id}      | GET      |    | Atgriež specifisku mašīnas izmantošanas laiku
 | /timeframes | POST      |    day, timeFrom, timeTo, employeeCarId | Izveido jaunu mašīnas izmantošanas laiku
+
