@@ -5,6 +5,7 @@ import bean.EmployeeCar;
 import bean.ErrorResponse;
 import models.EmployeeCarModel;
 import models.EmployeeModel;
+import modules.ControllerValidator;
 import org.postgresql.util.PSQLException;
 
 import javax.servlet.http.HttpServletResponse;
@@ -25,22 +26,21 @@ public class EmployeeController {
     public Response getEmployees(@QueryParam("startingFrom") Integer startingFrom, @QueryParam("name") String name, @Context final HttpServletResponse response) throws Exception {
         List<Employee> employeeList = new ArrayList<Employee>();
 
-        if (name != null && name.length() == 0) {
-            ErrorResponse errorResponse = new ErrorResponse("Empty name", 2);
-            return Response.status(404).entity(errorResponse).build();
+        ErrorResponse paginationCheck = ControllerValidator.checkPagination(startingFrom);
+        if (paginationCheck != null) {
+            return Response.status(404).entity(paginationCheck).build();
         }
 
+        ErrorResponse nameCheck = ControllerValidator.checkQueryParam(name, "name");
+        if (nameCheck != null) {
+            return Response.status(404).entity(nameCheck).build();
+        }
 
         try {
             employeeList =  employeeModel.getEmployees(startingFrom, name);
         } catch (Exception e) {
             ErrorResponse errorResponse = new ErrorResponse("Internal server error", 0);
             return Response.status(505).entity(errorResponse).build();
-        }
-
-        if (startingFrom != null &&startingFrom == 0) {
-            ErrorResponse errorResponse = new ErrorResponse("Pagination starts with 1", 2);
-            return Response.status(404).entity(errorResponse).build();
         }
 
         if(employeeList.size() == 0) {

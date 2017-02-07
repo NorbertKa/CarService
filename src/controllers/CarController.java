@@ -3,6 +3,7 @@ package controllers;
 import bean.Car;
 import bean.ErrorResponse;
 import models.CarModel;
+import modules.ControllerValidator;
 import org.postgresql.util.PSQLException;
 
 import javax.ws.rs.*;
@@ -20,21 +21,19 @@ public class CarController {
     public Response getCars(@QueryParam("startingFrom") Integer startingFrom, @QueryParam("regNumber") String regNumber, @QueryParam("manufacturer") String manufacturer) throws Exception {
         List<Car> carList = new ArrayList<Car>();
 
-        if (startingFrom != null && startingFrom == 0) {
-            ErrorResponse errorResponse = new ErrorResponse("Pagination starts with 1", 2);
-            return Response.status(404).entity(errorResponse).build();
-        } else {
-            System.out.println(startingFrom);
+        ErrorResponse paginationCheck = ControllerValidator.checkPagination(startingFrom);
+        if (paginationCheck != null) {
+            return Response.status(404).entity(paginationCheck).build();
         }
 
-        if (regNumber != null && regNumber.length() == 0) {
-            ErrorResponse errorResponse = new ErrorResponse("Empty regNumber", 2);
-            return Response.status(404).entity(errorResponse).build();
+        ErrorResponse regNumberCheck = ControllerValidator.checkQueryParam(regNumber, "regNumber");
+        if (regNumberCheck != null) {
+            return Response.status(404).entity(regNumberCheck).build();
         }
 
-        if (manufacturer != null && manufacturer.length() == 0) {
-            ErrorResponse errorResponse = new ErrorResponse("Empty manufacturer", 2);
-            return Response.status(404).entity(errorResponse).build();
+        ErrorResponse manufacturerCheck = ControllerValidator.checkQueryParam(manufacturer, "manufacturer");
+        if (manufacturerCheck != null) {
+            return Response.status(404).entity(manufacturerCheck).build();
         }
 
         try {
