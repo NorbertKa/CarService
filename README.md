@@ -7,6 +7,13 @@ Ka arī esmu izveidojis jaru iekšā out/artifacts/CarService_jar, kuru var pala
 
 `java -jar CarService.jar <POSTGRESQL_HOST> <POSTGRESQL_PORT> <POSTGRESQL_USERNAME> <POSTGRESQL_DB> <POSTGRESQL_PASSWORD>`
 
+## Kā palaist *frontend*
+
+frontend kods atrodas *frontend* mapītē, to palaist var ar komandām (secīgi)
+`npm install`
+`npm run dev`
+
+
 Routes:
 
 | Route         | Method           | Query/Form Parameters  | Description  |
