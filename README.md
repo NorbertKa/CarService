@@ -3,6 +3,7 @@
 Kā palaist servisu:
 *main funkcija atrodas src/controllers/RestServer*
 esmu izveidojis jaru iekšā out/artifacts/CarService_jar, kuru var palaist šādi:
+
 `java -jar CarService.jar <POSTGRESQL_HOST> <POSTGRESQL_PORT> <POSTGRESQL_USERNAME> <POSTGRESQL_DB> <POSTGRESQL_PASSWORD>`
 
 Routes:
