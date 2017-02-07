@@ -1,6 +1,6 @@
 # CarService
 
-Kā palaist servisu:
+## Kā palaist servisu:
 *main funkcija atrodas src/controllers/RestServer*
 esmu izveidojis jaru iekšā out/artifacts/CarService_jar, kuru var palaist šādi:
 
