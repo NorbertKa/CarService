@@ -1,0 +1,2 @@
+ALTER TABLE Timeframe
+DROP COLUMN CarID;
