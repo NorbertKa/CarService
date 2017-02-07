@@ -9,10 +9,12 @@ import models.EmployeeCarModel;
 import models.EmployeeModel;
 import models.TimeframeModel;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.servlet.ServletContextHandler;
-import org.eclipse.jetty.servlet.ServletHolder;
+import org.eclipse.jetty.servlet.*;
+import org.eclipse.jetty.servlets.CrossOriginFilter;
 
+import javax.servlet.DispatcherType;
 import javax.sql.DataSource;
+import java.util.EnumSet;
 
 
 public class RestServer {
@@ -58,6 +60,7 @@ public class RestServer {
 
         Server jettyServer = new Server(1337);
         jettyServer.setHandler(context);
+
 
         ServletHolder jerseyServlet = context.addServlet(
                 org.glassfish.jersey.servlet.ServletContainer.class, "/*");
